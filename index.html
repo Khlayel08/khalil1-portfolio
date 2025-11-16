@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khalil Khemila - Ingénieur Électronique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 120px 2rem 80px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 15px;
+            height: 15px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--light);
+        }
+
+        .experience-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            padding-left: 1.5rem;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            border: 1px solid var(--accent);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KK</div>
+            <ul>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Khalil Khemila</h1>
+        <p>Ingénieur en Électronique Industrielle | Systèmes Embarqués & Vision par Ordinateur</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Me Contacter</a>
+            <a href="https://github.com/Khlayel08" class="btn btn-secondary" target="_blank">GitHub</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>À Propos</h2>
+        <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <p style="font-size: 1.1rem; text-align: center; line-height: 1.8;">
+                Ingénieur fraîchement diplômé en électronique, spécialisé dans les systèmes embarqués et la vision par ordinateur. 
+                Solide expérience dans le développement de solutions intelligentes et l'application de modèles d'intelligence artificielle 
+                à des problématiques réelles. Expertise démontrée en microcontrôleurs, solutions IoT et frameworks d'apprentissage profond. 
+                Reconnu pour l'innovation, la rigueur et une passion constante pour l'avancement technologique.
+            </p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🔧 Systèmes Embarqués</h3>
+                <ul>
+                    <li>C Embarqué, C++, C</li>
+                    <li>VHDL, Assembleur</li>
+                    <li>ESP32, STM32, PIC</li>
+                    <li>Arduino, FPGA</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>👁️ Vision par Ordinateur</h3>
+                <ul>
+                    <li>OpenCV, Mediapipe</li>
+                    <li>PyTorch, TensorFlow</li>
+                    <li>Keras, YOLOv5</li>
+                    <li>CNN, ResNet, EfficientNet</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🌐 IoT & Protocoles</h3>
+                <ul>
+                    <li>I2C, CAN, UART</li>
+                    <li>Modbus</li>
+                    <li>Solutions IoT</li>
+                    <li>Communication temps réel</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>📊 Data Science</h3>
+                <ul>
+                    <li>Python, Pandas</li>
+                    <li>NumPy, Scikit-learn</li>
+                    <li>Seaborn, MATLAB</li>
+                    <li>Analyse de données</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🛠️ Outils & Environnements</h3>
+                <ul>
+                    <li>STM32CubeIDE</li>
+                    <li>Proteus, PicC</li>
+                    <li>Simatic Step7</li>
+                    <li>MATLAB</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>🌍 Langues</h3>
+                <ul>
+                    <li>Arabe (Natif)</li>
+                    <li>Français (B1)</li>
+                    <li>Anglais (Bilingue)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Expérience Professionnelle</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3>Stage de Fin d'Études - Avionav</h3>
+                <div class="experience-meta">📍 Sousse, Tunisie | 📅 Février 2025 – Juin 2025</div>
+                <ul>
+                    <li>Développement d'une solution d'estimation d'altitude de drone utilisant la vision par ordinateur</li>
+                    <li>Création d'une base de données spécialisée à partir de vidéos Google Earth, annotée en 8 classes (50-700m)</li>
+                    <li>Implémentation et optimisation de CNN (ResNet18, EfficientNet-B0) atteignant 97% de précision</li>
+                    <li>Développement de fusion multimodale RGB/profondeur atteignant 97,8% de précision et F1-score de 0,979</li>
+                </ul>
+                <div class="tech-tags">
+                    <span class="tag">MIDAS</span>
+                    <span class="tag">CNN</span>
+                    <span class="tag">EfficientNet-B0</span>
+                    <span class="tag">ResNet-18</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Keras</span>
+                    <span class="tag">PyTorch</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3>Stage d'Ingénieur - Laboratoire de Mécanique de Sousse</h3>
+                <div class="experience-meta">📍 Sousse, Tunisie | 📅 Juin 2024 – Août 2024</div>
+                <ul>
+                    <li>Conception d'un système IoT pour la prévention des troubles musculo-squelettiques</li>
+                    <li>Surveillance de la posture et des mouvements utilisant ESP32-C3 Mini et capteurs IMU (MPU9250, GY-91)</li>
+                    <li>Transmission en temps réel de données biomécaniques (I2C, C++) et analyse en Python</li>
+                    <li>Évaluation des risques utilisant la méthodologie REBA</li>
+                </ul>
+                <div class="tech-tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">IMU</span>
+                    <span class="tag">I2C</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">IoT</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3>Stage d'Initiation - UATS DRÄXLMAIER</h3>
+                <div class="experience-meta">📍 Sousse, Tunisie | 📅 Juillet 2023 – Août 2023</div>
+                <ul>
+                    <li>Surveillance opérationnelle des lignes de production</li>
+                    <li>Contribution à l'efficacité opérationnelle et conformité aux normes de qualité</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projets Académiques</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>🔐 Système d'Identification Intelligent</h3>
+                    <p>Développement d'un système de sécurité combinant la reconnaissance faciale et l'analyse de posture humaine pour la gestion d'accès. Application avec interface Tkinter permettant d'ajouter ou supprimer des utilisateurs autorisés.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">YOLOv5</span>
+                        <span class="tag">Mediapipe</span>
+                        <span class="tag">Tkinter</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-content">
+                    <h3>🌤️ Station Météo</h3>
+                    <p>Système mesurant et affichant la température, l'humidité et la pression à l'aide de capteurs, d'un microcontrôleur PIC16F877A et d'un LCD 16x2.</p>
+                    <div class="tech-tags">
+                        <span class="tag">PIC16F877A</span>
+                        <span class="tag">LCD 16x2</span>
+                        <span class="tag">Système embarqué</span>
+                        <span class="tag">Électronique analogique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Formation</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3>École Nationale d'Ingénieurs de Sousse (ENISo)</h3>
+                <div class="experience-meta">📅 Septembre 2022 – Juin 2025</div>
+                <p>Diplôme d'ingénieur en Électronique Industrielle, spécialité Contrôle Industriel</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Institut Préparatoire aux Études d'Ingénieur de Monastir</h3>
+                <div class="experience-meta">📅 Septembre 2020 – Juillet 2022</div>
+                <p>Diplôme préparatoire en ingénierie</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Machine Learning & AI Foundations - Udemy</h3>
+                <div class="experience-meta">📅 Novembre 2025</div>
+                <p>Formation en apprentissage automatique et intelligence artificielle couvrant les concepts fondamentaux du Machine Learning, Deep Learning et Data Science</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <p><a href="mailto:khemilakhalil08@gmail.com" style="color: var(--primary);">khemilakhalil08@gmail.com</a></p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <h3>Téléphone</h3>
+                <p>+216 51 700 519</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p><a href="https://www.linkedin.com/in/khalil-khemila-7b8144248" target="_blank" style="color: var(--primary);">Khalil Khemila</a></p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">💻</div>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/Khlayel08" target="_blank" style="color: var(--primary);">@Khlayel08</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Khalil Khemila. Tous droits réservés.</p>
+        <p>Ingénieur en Électronique | Systèmes Embarqués & Vision par Ordinateur</p>
+    </footer>
+</body>
+</html>
